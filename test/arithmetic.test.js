@@ -95,6 +95,33 @@ describe('Arithmetic', function () {
 
 // TODO: Challenge #1
  
+    describe('Power', function () {
+        it('raises a positive integer to a positive integer', function (done) {
+            request.get('/arithmetic?operation=power&operand1=2&operand2=5')
+                .expect(200)
+                .end(function (err, res) {
+                    expect(res.body).to.eql({ result: 32 });
+                    done();
+                });
+        });
+        it('raises a number to the power of zero', function (done) {
+            request.get('/arithmetic?operation=power&operand1=42&operand2=0')
+                .expect(200)
+                .end(function (err, res) {
+                    expect(res.body).to.eql({ result: 1 });
+                    done();
+                });
+        });
+        it('supports negative exponents', function (done) {
+            request.get('/arithmetic?operation=power&operand1=2&operand2=-2')
+                .expect(200)
+                .end(function (err, res) {
+                    expect(res.body).to.eql({ result: 0.25 });
+                    done();
+                });
+        });
+    });
+
 
     describe('Multiplication', function () {
         it('multiplies two positive integers', function (done) {

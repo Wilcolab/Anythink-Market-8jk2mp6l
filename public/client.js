@@ -16,32 +16,26 @@ var operand1 = 0;
 var operand2 = 0;
 var operation = null;
 
+var operationQueryMap = {
+    '+': 'add',
+    '-': 'subtract',
+    '*': 'multiply',
+    '/': 'divide',
+    '^': 'power',
+    '%': 'modulo'
+};
+
 function calculate(operand1, operand2, operation) {
     var uri = location.origin + "/arithmetic";
 
-    switch (operation) {
-        case '+':
-            uri += "?operation=add";
-            break;
-        case '-':
-            uri += "?operation=subtract";
-            break;
-        case '*':
-            uri += "?operation=multiply";
-            break;
-        case '/':
-            uri += "?operation=divide";
-            break;
-        case '^':
-            uri += "?operation=power";
-            break;
-        case '%':
-            uri += "?operation=modulo";
-            break;
-        default:
-            setError();
-            return;
+    var queryOperation = operationQueryMap[operation];
+
+    if (!queryOperation) {
+        setError();
+        return;
     }
+
+    uri += "?operation=" + queryOperation;
 
     uri += "&operand1=" + encodeURIComponent(operand1);
     uri += "&operand2=" + encodeURIComponent(operand2);
