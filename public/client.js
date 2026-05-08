@@ -19,7 +19,7 @@ var operation = null;
 function calculate(operand1, operand2, operation) {
     var uri = location.origin + "/arithmetic";
 
-    // TODO: Add operator
+    // Map UI operators to server operation names
     switch (operation) {
         case '+':
             uri += "?operation=add";
@@ -34,7 +34,12 @@ function calculate(operand1, operand2, operation) {
             uri += "?operation=divide";
             break;
         case '^':
+            // Power/exponentiation operator - calculates operand1 ^ operand2
             uri += "?operation=power";
+            break;
+        case '%':
+            // Modulo operator - calculates remainder of operand1 / operand2
+            uri += "?operation=modulo";
             break;
         default:
             setError();
@@ -113,6 +118,21 @@ function signPressed() {
     }
 }
 
+// Square root function - calculates √(value) directly without server call
+function sqrtPressed() {
+    var value = getValue();
+    
+    if (value < 0) {
+        setError();
+        return;
+    }
+    
+    var result = Math.sqrt(value);
+    setValue(result);
+    operand1 = result;
+    state = states.operand1;
+}
+
 function operationPressed(op) {
     operand1 = getValue();
     operation = op;
@@ -135,15 +155,16 @@ function equalPressed() {
     calculate(operand1, operand2, operation);
 }
 
-// TODO: Add key press logics
+// Keyboard event listener - supports number keys, operators (+, -, *, /, ^, %), decimal (.), and equals (=)
 document.addEventListener('keypress', (event) => {
     if (event.key.match(/^\d+$/)) {
         numberPressed(event.key);
     } else if (event.key == '.') {
         decimalPressed();
-    } else if (event.key.match(/^[-*+/^]$/)) {
+    } else if (event.key.match(/^[-*+/^%]$/)) {
+        // Support for +, -, *, /, ^, and % operators
         operationPressed(event.key);
-    } else if (event.key == '=') {
+    } else if (event.key == '=' || event.key == 'Enter') {
         equalPressed();
     }
 });

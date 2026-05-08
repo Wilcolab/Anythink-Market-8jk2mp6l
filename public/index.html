@@ -16,33 +16,39 @@
       <div class="box">
         <div class="calculator">
           <div class="calculator-buttons">
+            <!-- Row 1: Clear controls -->
             <button class="btn span-2"></button>
             <button class="btn" onClick="clearPressed()">C</button>
-            <button class="btn" onClick="clearPressed()">CE</button>
+            <button class="btn" onClick="clearEntryPressed()">CE</button>
 
+            <!-- Row 2: Advanced operations -->
+            <button class="btn" onClick="sqrtPressed()">&radic;</button>
+            <button class="btn" onClick="operationPressed('%')">%</button>
+            <button class="btn" onClick="operationPressed('^')">^</button>
+            <button class="btn" onClick="operationPressed('/')">&divide;</button>
+
+            <!-- Row 3: Numbers 7-9 -->
             <button class="btn" onClick="numberPressed(7)">7</button>
             <button class="btn" onClick="numberPressed(8)">8</button>
             <button class="btn" onClick="numberPressed(9)">9</button>
-            <button class="btn" onClick="operationPressed('/')">&divide;</button>
+            <button class="btn" onClick="operationPressed('*')">x</button>
 
+            <!-- Row 4: Numbers 4-6 -->
             <button class="btn" onClick="numberPressed(4)">4</button>
             <button class="btn" onClick="numberPressed(5)">5</button>
             <button class="btn" onClick="numberPressed(6)">6</button>
-            <button class="btn" onClick="operationPressed('*')">x</button>
+            <button class="btn" onClick="operationPressed('-')">-</button>
 
+            <!-- Row 5: Numbers 1-3 -->
             <button class="btn" onClick="numberPressed(1)">1</button>
             <button class="btn" onClick="numberPressed(2)">2</button>
             <button class="btn" onClick="numberPressed(3)">3</button>
-            <button class="btn" onClick="operationPressed('-')">-</button>
-
-            <button class="btn" onClick="numberPressed(0)">0</button>
-            <button class="btn" onClick="decimalPressed()">.</button>
             <button class="btn" onClick="operationPressed('+')">+</button>
-            <button class="btn" onClick="equalPressed()">=</button>
 
-            <!-- TODO: Buttons -->
-             <button class="btn" onClick="operationPressed('^')">^</button>
-            
+            <!-- Row 6: Numbers 0, decimal, equals -->
+            <button class="btn span-2" onClick="numberPressed(0)">0</button>
+            <button class="btn" onClick="decimalPressed()">.</button>
+            <button class="btn" onClick="equalPressed()">=</button>
           </div>
         </div>
       </div>
