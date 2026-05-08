@@ -10,13 +10,13 @@ exports.calculate = function(req, res) {
     res.json({ error: err.message });
   });
 
-  // TODO: Add operator
   var operations = {
     'add':      function(a, b) { return Number(a) + Number(b) },
     'subtract': function(a, b) { return a - b },
     'multiply': function(a, b) { return a * b },
     'divide':   function(a, b) { return a / b },
     'power':    function(a, b) { return Math.pow(a, b) },
+    'modulo':   function(a, b) { return a % b },
   };
 
   if (!req.query.operation) {

@@ -19,7 +19,6 @@ var operation = null;
 function calculate(operand1, operand2, operation) {
     var uri = location.origin + "/arithmetic";
 
-    // TODO: Add operator
     switch (operation) {
         case '+':
             uri += "?operation=add";
@@ -35,6 +34,9 @@ function calculate(operand1, operand2, operation) {
             break;
         case '^':
             uri += "?operation=power";
+            break;
+        case '%':
+            uri += "?operation=modulo";
             break;
         default:
             setError();
@@ -113,6 +115,20 @@ function signPressed() {
     }
 }
 
+function sqrtPressed() {
+    var value = getValue();
+
+    if (value < 0) {
+        setError();
+        return;
+    }
+
+    var result = Math.sqrt(value);
+    setValue(result);
+    operand1 = result;
+    state = states.operand1;
+}
+
 function operationPressed(op) {
     operand1 = getValue();
     operation = op;
@@ -135,15 +151,14 @@ function equalPressed() {
     calculate(operand1, operand2, operation);
 }
 
-// TODO: Add key press logics
 document.addEventListener('keypress', (event) => {
     if (event.key.match(/^\d+$/)) {
         numberPressed(event.key);
     } else if (event.key == '.') {
         decimalPressed();
-    } else if (event.key.match(/^[-*+/^]$/)) {
+    } else if (event.key.match(/^[-*+/^%]$/)) {
         operationPressed(event.key);
-    } else if (event.key == '=') {
+    } else if (event.key == '=' || event.key == 'Enter') {
         equalPressed();
     }
 });

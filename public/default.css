@@ -180,7 +180,45 @@ BODY {
 .btn {
     font-size: 1em;
     height: 45px;
-    border: 1px solid black;
-    background-color: #d5d5d5;
-    margin: 4px;
+    border: 2px solid #333;
+    background-color: #e8e8e8;
+    margin: 3px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.btn:hover {
+    background-color: #f0f0f0;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.btn:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.btn[onClick*="operation"] {
+    background-color: #4CAF50;
+    color: white;
+    border-color: #45a049;
+}
+
+.btn[onClick*="operation"]:hover {
+    background-color: #45a049;
+}
+
+.btn[onClick*="equal"],
+.btn[onClick*="Clear"] {
+    background-color: #2196F3;
+    color: white;
+    border-color: #0b7dda;
+    font-weight: bold;
+}
+
+.btn[onClick*="equal"]:hover,
+.btn[onClick*="Clear"]:hover {
+    background-color: #0b7dda;
 }
